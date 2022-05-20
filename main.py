@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.metrics import dp
-from kivy.properties import StringProperty, BooleanProperty
+from kivy.properties import StringProperty, BooleanProperty, NumericProperty
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
@@ -16,6 +16,9 @@ class WidgetsExample(GridLayout):
     cnt = 0
     toggle_state = "normal"
     count_enabled = BooleanProperty(False)
+
+    def_slider_val = NumericProperty(50)
+    # slider_value_txt = StringProperty(str(def_slider_val.defaultvalue))
 
     def on_button_click(self):
         print(self.count_enabled)
@@ -37,6 +40,11 @@ class WidgetsExample(GridLayout):
 
     def on_switch_active(self, widget):
         print("Switch: " + str(widget.active))
+
+#     def on_slider_value(self, widget):
+#         print("Slider: ", str(int(widget.value)))
+#         # self.slider_value_txt = str(int(widget.value))
+
 
 class StackLayoutExample(StackLayout):
     def __init__(self, **kwargs):

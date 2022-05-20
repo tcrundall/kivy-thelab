@@ -25,9 +25,22 @@ WidgetsExample
         font_size: root.font_size
         color: 1, .5, 1, 1
     Switch:
+        id: my_switch
         on_active: root.on_switch_active(self)
         size_hint: None, 1
         width: "100dp"
+        active: True
+    Slider:
+        id: my_slider
+        min: 0
+        max: 100
+        value: root.def_slider_val 
+        orientation: "vertical"
+        disabled: not my_switch.active
+        # on_value: root.on_slider_value(self)
+    Label:
+        text: str(int(my_slider.value))
+        # text: root.slider_value_txt
 
 
 # Not a layout, can only take one child
