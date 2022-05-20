@@ -38,9 +38,17 @@ WidgetsExample
         orientation: "vertical"
         disabled: not my_switch.active
         # on_value: root.on_slider_value(self)
-    Label:
-        text: str(int(my_slider.value))
-        # text: root.slider_value_txt
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: str(int(my_slider.value))
+            font_name: "fonts/Lcd.ttf"
+            font_size: "100dp"
+            color: 1, 0, 0, 1
+        ProgressBar:
+            size_hint: 1, 0.1
+            max: 100
+            value: my_slider.value
 
 
 # Not a layout, can only take one child
