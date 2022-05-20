@@ -11,7 +11,7 @@ from kivy.uix.widget import Widget
 class StackLayoutExample(StackLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.orientation = 'lr-bt'
+        self.orientation = 'lr-tb'
         for i in range(1, 100):
             size = dp(100)
             b = Button(
