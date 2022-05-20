@@ -14,14 +14,26 @@ class WidgetsExample(GridLayout):
     fsize = 70
     font_size = StringProperty(f"{fsize}dp")
     cnt = 0
+    toggle_state = "normal"
 
     def on_button_click(self):
         self.cnt += 1
-        self.fsize += 10
+        if self.toggle_state == "normal":
+            self.fsize += 10
+        else:
+            self.fsize -= 10
+
         self.font_size = f"{self.fsize}dp"
         # self.my_text = f"Clicked {self.cnt} time{'' if self.cnt == 1 else 's'}!"
         self.my_text = str(self.cnt)
 
+    def on_toggle_button_state(self, widget):
+        if widget.state == "normal":
+            widget.text = "OFF"
+        else:
+            widget.text = "ON"
+        # print("toggled ", widget.state)
+        self.toggle_state = widget.state
 
 
 class StackLayoutExample(StackLayout):
