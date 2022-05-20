@@ -1,3 +1,6 @@
+"""
+https://youtu.be/l8Imtec4ReQ?t=6224
+"""
 from kivy.app import App
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, NumericProperty
@@ -17,8 +20,10 @@ class WidgetsExample(GridLayout):
     toggle_state = "normal"
     count_enabled = BooleanProperty(False)
 
-    def_slider_val = NumericProperty(50)
-    # slider_value_txt = StringProperty(str(def_slider_val.defaultvalue))
+    default_slider_val = NumericProperty(50)
+    # slider_value_txt = StringProperty(str(default_slider_val.defaultvalue))
+
+    textbox_contents = StringProperty("")
 
     def on_button_click(self):
         print(self.count_enabled)
@@ -44,6 +49,9 @@ class WidgetsExample(GridLayout):
 #     def on_slider_value(self, widget):
 #         print("Slider: ", str(int(widget.value)))
 #         # self.slider_value_txt = str(int(widget.value))
+
+    def on_text_validate(self, widget):
+        self.textbox_contents = widget.text
 
 
 class StackLayoutExample(StackLayout):

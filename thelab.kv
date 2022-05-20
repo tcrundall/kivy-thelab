@@ -14,7 +14,6 @@ WidgetsExample
         on_state: root.on_toggle_button_state(self)
         size_hint: None, 1
         width: "100dp"
-
     Button:
         text: "Count"
         on_press: root.on_button_click()
@@ -34,7 +33,7 @@ WidgetsExample
         id: my_slider
         min: 0
         max: 100
-        value: root.def_slider_val 
+        value: 50
         orientation: "vertical"
         disabled: not my_switch.active
         # on_value: root.on_slider_value(self)
@@ -49,7 +48,16 @@ WidgetsExample
             size_hint: 1, 0.1
             max: 100
             value: my_slider.value
-
+    TextInput:
+        id: my_text_input
+        size_hint: None, 1
+        width: "100dp"
+        text: "foo"
+        multiline: False
+        on_text_validate: root.on_text_validate(self)
+    Label:
+        # text: my_text_input.text
+        text: "Your name is: " + root.textbox_contents
 
 # Not a layout, can only take one child
 <ScrollViewExample@ScrollView>
