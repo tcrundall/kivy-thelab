@@ -24,6 +24,10 @@ WidgetsExample
         font_name: "fonts/Lcd.ttf"
         font_size: root.font_size
         color: 1, .5, 1, 1
+    Switch:
+        on_active: root.on_switch_active(self)
+        size_hint: None, 1
+        width: "100dp"
 
 
 # Not a layout, can only take one child
