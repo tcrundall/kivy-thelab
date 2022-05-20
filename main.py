@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.metrics import dp
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, BooleanProperty
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
@@ -15,25 +15,25 @@ class WidgetsExample(GridLayout):
     font_size = StringProperty(f"{fsize}dp")
     cnt = 0
     toggle_state = "normal"
+    count_enabled = BooleanProperty(False)
 
     def on_button_click(self):
-        self.cnt += 1
-        if self.toggle_state == "normal":
+        print(self.count_enabled)
+        if self.count_enabled:
+            self.cnt += 1
             self.fsize += 10
-        else:
-            self.fsize -= 10
 
-        self.font_size = f"{self.fsize}dp"
-        # self.my_text = f"Clicked {self.cnt} time{'' if self.cnt == 1 else 's'}!"
-        self.my_text = str(self.cnt)
+            self.font_size = f"{self.fsize}dp"
+            self.my_text = str(self.cnt)
 
     def on_toggle_button_state(self, widget):
         if widget.state == "normal":
             widget.text = "OFF"
+            self.count_enabled = False
         else:
             widget.text = "ON"
-        # print("toggled ", widget.state)
-        self.toggle_state = widget.state
+            self.count_enabled = True
+        print(self.count_enabled)
 
 
 class StackLayoutExample(StackLayout):
