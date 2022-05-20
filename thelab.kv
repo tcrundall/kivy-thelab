@@ -10,10 +10,13 @@ WidgetsExample
 <WidgetsExample@GridLayout>:
     cols: 3
     Button:
-        text: "Click here"
+        text: "Count"
         on_press: root.on_button_click()
     Label:
         text: root.my_text
+        font_name: "fonts/Lcd.ttf"
+        font_size: root.font_size
+        color: 1, .5, 1, 1
 
 
 # Not a layout, can only take one child

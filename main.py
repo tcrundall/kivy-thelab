@@ -10,13 +10,18 @@ from kivy.uix.widget import Widget
 
 
 class WidgetsExample(GridLayout):
-    my_text = StringProperty("Hello!")
+    my_text = StringProperty("0")
+    fsize = 70
+    font_size = StringProperty(f"{fsize}dp")
     cnt = 0
 
     def on_button_click(self):
-        print("Button clicked")
         self.cnt += 1
-        self.my_text = f"Clicked {self.cnt} time{'' if self.cnt == 1 else 's'}!"
+        self.fsize += 10
+        self.font_size = f"{self.fsize}dp"
+        # self.my_text = f"Clicked {self.cnt} time{'' if self.cnt == 1 else 's'}!"
+        self.my_text = str(self.cnt)
+
 
 
 class StackLayoutExample(StackLayout):
