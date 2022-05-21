@@ -2,6 +2,8 @@
 https://youtu.be/l8Imtec4ReQ?t=6224
 """
 from kivy.app import App
+from kivy.graphics.context_instructions import Color
+from kivy.graphics.vertex_instructions import Line, Rectangle
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, NumericProperty
 from kivy.uix.anchorlayout import AnchorLayout
@@ -112,6 +114,17 @@ class CanvasExample2(Widget):
 
 class CanvasExample3(Widget):
     pass
+
+
+class CanvasExample4(Widget):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        with self.canvas:
+            Line(points=(100, 100, 200, 200), width=30)
+            Color(0, 1, 0)
+            Line(circle=(400, 200, 80), width=2)
+            Line(rectangle=(500, 300, 100, 150), width=2)
+            Rectangle(pos=(200, 400), size=(150, 100))
 
 
 TheLabApp().run()
