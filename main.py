@@ -1,11 +1,12 @@
 """
-https://youtu.be/l8Imtec4ReQ?t=6224
+https://youtu.be/l8Imtec4ReQ?t=8491
 """
 from kivy.app import App
 from kivy.graphics.context_instructions import Color
-from kivy.graphics.vertex_instructions import Line, Rectangle
+from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty, NumericProperty
+from kivy.properties import Clock
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
@@ -141,6 +142,65 @@ class CanvasExample4(Widget):
         x += inc
         # x = min(x, self.width - w)
         self.rect.pos = (x, y)
+
+
+class CanvasExample5(Widget):
+    accel = dp(-0.1)
+    vx = dp(10)
+    vy = dp(-4)
+    positioned = False
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.ball_size = dp(50)
+        with self.canvas:
+            self.ball = Ellipse(
+                pos=(self.center_x, self.center_y),
+                size=(self.ball_size, self.ball_size),
+            )
+            Color(rgba=(1,0,0,0.5))
+            self.marker = Ellipse(
+                pos=(self.center_x, self.center_y),
+                size=(self.ball_size, self.ball_size),
+            )
+        Clock.schedule_interval(self.update, 1/60.)
+
+    def on_size(self, *args):
+        if not self.positioned:
+            x, y = self.center
+            w, h = self.ball.size
+            self.ball.pos = (x - w/2, y - h/2)
+            self.marker.pos = (x - w/2, y - h/2)
+        self.positioned = True
+    
+    def update(self, dt):
+        print("updating!")
+        # self.ball.pos = (x+dp(10), y)
+        x, y = self.ball.pos
+        w, h = self.ball.size
+        
+        x += self.vx
+        y += self.vy
+        if x < 0:
+            self.vx *= -1
+            x *= -1
+        if y < 0:
+            self.vy *= -1
+            y *= -1
+
+        diff_x = self.width - (x+w)
+        if diff_x < 0:
+            self.vx *= -1
+            x += 2 * diff_x
+
+        diff_y = self.height - (y+h)
+        if diff_y < 0:
+            self.vy *= -1
+            y += 2 * diff_y
+        self.vx += self.accel
+        self.vy += self.accel
+
+        self.ball.pos = (x, y)
 
 
 TheLabApp().run()
